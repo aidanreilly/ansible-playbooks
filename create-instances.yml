@@ -1,0 +1,21 @@
+---
+- name: Create three AWS t2.micro instances
+  hosts: localhost # localhost is set described in the HOSTS file
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: Create the instance
+      ec2:
+        key_name: ansible-final # this is my key-pair name
+        group: launch-wizard-1 # security group created when i set up the master machine
+        instance_type: t2.micro
+        image: ami-f90a4880 # AMI of the master machine (could be any AMI)
+        region: eu-west-1
+        wait: yes
+        instance_tags:
+           group: launch-wizard-1
+        exact_count: 3 # The task is run 3 times to create 3 instances
+        count_tag:
+           group: launch-wizard-1 # default security group
+      register: launch-wizard-1
+...
