@@ -11,3 +11,4 @@ Using vi, I added a create-instances.yml playbook and run it as follows:
 
     ansible-playbook create-instances.yml
 
+Screenshots are in the \images folder.
